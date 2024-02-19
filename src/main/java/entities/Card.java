@@ -5,7 +5,7 @@
 package entities;
 
 import enums.CardName;
-import enums.Couleur;
+import enums.Color;
 import java.util.Objects;
 
 
@@ -13,8 +13,8 @@ import java.util.Objects;
  *
  * @author Elisa Bothy
  */
-public class Card {
-    private Couleur couleur;
+public class Card implements Comparable<Card>{
+    private Color color;
     private CardName name;
 
     public Card() {
@@ -23,7 +23,7 @@ public class Card {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.couleur);
+        hash = 29 * hash + Objects.hashCode(this.color);
         hash = 29 * hash + Objects.hashCode(this.name);
         return hash;
     }
@@ -32,14 +32,14 @@ public class Card {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Card{");
-        sb.append("couleur=").append(couleur);
+        sb.append("couleur=").append(color);
         sb.append(", name=").append(name);
         sb.append('}');
         return sb.toString();
     }
 
-    public Card(Couleur couleur, CardName name) {
-        this.couleur = couleur;
+    public Card(Color couleur, CardName name) {
+        this.color = couleur;
         this.name = name;
     }
 
@@ -55,18 +55,18 @@ public class Card {
             return false;
         }
         final Card other = (Card) obj;
-        if (this.couleur != other.couleur) {
+        if (this.color != other.color) {
             return false;
         }
         return Objects.equals(this.name, other.name);
     }
 
-    public Couleur getCouleur() {
-        return couleur;
+    public Color getCouleur() {
+        return color;
     }
 
-    public void setCouleur(Couleur couleur) {
-        this.couleur = couleur;
+    public void setCouleur(Color couleur) {
+        this.color = couleur;
     }
 
     public CardName getName() {
@@ -75,6 +75,16 @@ public class Card {
 
     public void setName(CardName name) {
         this.name = name;
+    }
+
+    // compare par nom de la carte puis par couleur sachant que 
+    // pique>coeur>carreau>trèfle
+    @Override
+    public int compareTo(Card o) {
+        if(this.name != o.name){
+            return this.name.ordinal() - o.name.ordinal();
+        }
+        return this.color.ordinal() - o.color.ordinal();
     }
     
 }

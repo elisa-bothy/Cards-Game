@@ -5,6 +5,9 @@
 
 package fr.ldnr.elisa.cardsgame;
 
+import entities.Card;
+import entities.Deck;
+
 /**
  *
  * @author Elisa Bothy
@@ -12,6 +15,16 @@ package fr.ldnr.elisa.cardsgame;
 public class Game {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Deck deck = new Deck();
+        deck.shuffle();
+        for (Card card : deck.deal(5)){
+            System.out.println(card);
+        }
+        for (Card card : deck.deal(5)){
+            System.out.println(card);
+        }
+        deck.showDealt();
+        System.out.println("La taille du jeu restant :"
+                + deck.size());
     }
 }
