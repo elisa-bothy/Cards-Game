@@ -5,6 +5,7 @@
 package entities;
 
 import enums.Sexe;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -15,22 +16,39 @@ public class Player {
     private String name;
     private String forName;
     private Sexe sexe;
+    private int score;
+    private Hand hand;
 
-    public Player() {
+    public Player(String name) {
+        this.name = name;
+        this.forName = "Elisa";
+        this.sexe = Sexe.FEMALE;
+        this.score = 0;
+        this.hand = new Hand();
     }
 
-    public Player(String name, String forName, Sexe sexe) {
+    public Player(String name, String forName, Sexe sexe, int score, Hand hand) {
         this.name = name;
         this.forName = forName;
         this.sexe = sexe;
+        this.score = score;
+        this.hand = hand;
     }
 
-    public Sexe getSexe() {
-        return sexe;
+    public Hand getHand() {
+        return hand;
     }
 
-    public void setSexe(Sexe sexe) {
-        this.sexe = sexe;
+    public void setHand(Hand hand) {
+        this.hand = hand;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getName() {
@@ -49,23 +67,35 @@ public class Player {
         this.forName = forName;
     }
 
+    public Sexe getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Person{");
+        sb.append("Player{");
         sb.append("name=").append(name);
         sb.append(", forName=").append(forName);
         sb.append(", sexe=").append(sexe);
+        sb.append(", score=").append(score);
+        sb.append(", hand=").append(hand);
         sb.append('}');
         return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.forName);
-        hash = 37 * hash + Objects.hashCode(this.sexe);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.forName);
+        hash = 59 * hash + Objects.hashCode(this.sexe);
+        hash = 59 * hash + this.score;
+        hash = 59 * hash + Objects.hashCode(this.hand);
         return hash;
     }
 
@@ -81,13 +111,20 @@ public class Player {
             return false;
         }
         final Player other = (Player) obj;
+        if (this.score != other.score) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.forName, other.forName)) {
             return false;
         }
-        return this.sexe == other.sexe;
+        if (this.sexe != other.sexe) {
+            return false;
+        }
+        return Objects.equals(this.hand, other.hand);
     }
+   
     
 }

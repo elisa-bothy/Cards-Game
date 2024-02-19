@@ -5,8 +5,7 @@
 
 package fr.ldnr.elisa.cardsgame;
 
-import entities.Card;
-import entities.Deck;
+import controllers.Battle;
 
 /**
  *
@@ -15,16 +14,8 @@ import entities.Deck;
 public class Game {
 
     public static void main(String[] args) {
-        Deck deck = new Deck();
-        deck.shuffle();
-        for (Card card : deck.deal(5)){
-            System.out.println(card);
-        }
-        for (Card card : deck.deal(5)){
-            System.out.println(card);
-        }
-        deck.showDealt();
-        System.out.println("La taille du jeu restant :"
-                + deck.size());
+        Battle battle = new Battle();
+        battle.play();
+        System.out.println("battle = " + battle.win());
     }
 }
