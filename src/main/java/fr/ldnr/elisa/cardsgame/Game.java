@@ -14,8 +14,10 @@ import controllers.Battle;
 public class Game {
 
     public static void main(String[] args) {
-        Battle battle = new Battle();
+        Battle battle = new Battle(3);
+        System.out.println("Joueur 1 = " + (battle.getPlayers(0).getHand().size()));
+        System.out.println("Joueur 2 = " + (battle.getPlayers(1).getHand().size()));
+        System.out.println("Joueur 3 = " + (battle.getPlayers(2).getHand().size()));
         battle.play();
-        System.out.println("battle = " + battle.win());
     }
 }

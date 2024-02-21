@@ -10,15 +10,17 @@ import entities.Player;
  *
  * @author Elisa Bothy
  */
-public abstract class Games{
-    protected Player[]players;
+public abstract class Games {
+
+    protected Player[] players;
     protected int nb;
-    
-    public Games(int nb){
+
+    public Games(int nb) {
         this.nb = nb;
         players = new Player[nb];
     }
+
     public abstract void play();
-    
-    public abstract Player win();    
+
+    public abstract Player win();  
 }

@@ -8,12 +8,12 @@ import enums.CardName;
 import enums.Color;
 import java.util.Objects;
 
-
 /**
  *
  * @author Elisa Bothy
  */
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card> {
+
     private Color color;
     private CardName name;
 
@@ -81,10 +81,10 @@ public class Card implements Comparable<Card>{
     // pique>coeur>carreau>trèfle
     @Override
     public int compareTo(Card o) {
-        if(this.name != o.name){
+        if (this.name != o.name) {
             return this.name.ordinal() - o.name.ordinal();
         }
         return this.color.ordinal() - o.color.ordinal();
     }
-    
+
 }

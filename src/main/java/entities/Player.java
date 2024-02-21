@@ -5,7 +5,6 @@
 package entities;
 
 import enums.Sexe;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -13,6 +12,7 @@ import java.util.Objects;
  * @author Elisa Bothy
  */
 public class Player {
+
     private String name;
     private String forName;
     private Sexe sexe;
@@ -125,6 +125,5 @@ public class Player {
         }
         return Objects.equals(this.hand, other.hand);
     }
-   
-    
+
 }

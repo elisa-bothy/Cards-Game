@@ -15,10 +15,12 @@ import java.util.Collections;
  * @author Elisa Bothy
  */
 public class Deck extends ArrayList<Card> {
-    
+
+    private static final long serialVersionUID = 1L;
+
     //les cartes distribuées
     private ArrayList<Card> dealt;
-    
+
     public Deck() {
         dealt = new ArrayList<>();
         for (Color couleur : Color.values()) {
@@ -35,42 +37,49 @@ public class Deck extends ArrayList<Card> {
         sb.append('}');
         return sb.toString();
     }
+
+    public Collection<Card> deal(int n) {
+    if (n > 52) {
+        throw new IllegalArgumentException("Le nombre de cartes demandé ne peut pas dépasser 52.");
+    }
     
-    public Collection<Card> deal (int n){
-       
-      ArrayList<Card> returned = new ArrayList<>();
-      for (int i=0; i < n ; i++){
-          Card card = this.remove(0);
-          returned.add(card);
-          dealt.add(card);
-      }  
-      return returned;
-    } 
-    
+    try {
+        ArrayList<Card> returned = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            Card card = this.remove(0);
+            returned.add(card);
+            dealt.add(card);
+        }
+        return returned;
+    } catch (Exception ex) {
+        System.out.println("Une erreur est survenue lors de la distribution des cartes");
+    }
+    return null;
+}
     //mélange les cartes du jeu
     public void shuffle() {
         Collections.shuffle(this);
     }
-    
+
     //trie les cartes du jeu
-    public void sort(){
-       this.sort((Card o1, Card o2) -> o1.compareTo(o2));
+    public void sort() {
+        this.sort((Card o1, Card o2) -> o1.compareTo(o2));
     }
-    
+
     // remet les cartes distribuées dans le jeu
-    public void merge(){
+    public void merge() {
         this.addAll(dealt);
         dealt.clear();
     }
-    
+
     //remet le jeu dans l'état initial, trié
-    public void mergeAndSort(){
+    public void mergeAndSort() {
         merge();
         sort();
     }
-    
-    public void showDealt(){
-        for(Card card : dealt){
+
+    public void showDealt() {
+        for (Card card : dealt) {
             System.out.println(card);
         }
     }
