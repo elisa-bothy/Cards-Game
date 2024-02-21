@@ -11,7 +11,10 @@ import java.util.ArrayList;
  * @author Elisa Bothy
  */
 public class Hand extends ArrayList<Card> {
-    public Hand(){
-    super();
+
+    private static final long serialVersionUID = 1L;
+
+    public Hand() {
+        super();
     }
 }
